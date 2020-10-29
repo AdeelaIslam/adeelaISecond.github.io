@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+<!DOCTYPE html>
+<html>
+    {% block content %}
+    <head>
+        {{ dropzone.load() }}
+        {{ dropzone.style('border: 2px dashed #0087F7; margin: 10%; min-height: 400px;') }}
+    </head>
+    <body>
+	
+        {{ dropzone.create(action_view='selectFiles') }}
+     <center>   
+        <form method ="POST" action="/getFile">
+            <h3>Click to get the uploaded files' name...</h3>
+            <button  class="btn btn-danger" type="submit" name="submit">Get files' name</button>
+        </form>
+    </center>
+        
+        
+    </body>
+    {% endblock %}
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% extends "layout.html" %}
+<html>
+{% block content %}
+<head>
+    <style>
+        .head {
+            font-family: 'Georgia';
+            }
+        .column {
+              float: center;
+              width: 100%;
+              padding: 30px;
+            }
+    </style>
+</head>
+<body>
+    <br>
+    
+   <h3 class = "head">&nbsp; &nbsp; Uploaded X-Rays:</h3>
+   <div class="aligncenter">
+   <center>
+    <form method ="POST" action="/getResults">
+            <button class="btn btn-outline-success" type="submit" name="submit">Get Results</button>
+    </form>
+    
+    <br/><br/>
+    <h3>{{ result }}</h3>
+    
+    </center>
+    </div>
+    <div class="column">   
+        <a class="btn btn-mini btn-primary" href="{{ url_for('selectFiles') }}">Back</a><p>
+    
+        <ul >
+        {% for file_url in file_urls %}
+            <li> {{ file_url }}
+            {% if "txt" in file_url %}
+                <li><iframe src="{{ file_url }}" frameborder="0" ></iframe></li>
+            {% else %}
+                <li><img style="height: 150px" src="{{ file_url }}"></li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    </div>
+</body>
+{% endblock %}
+</html>
